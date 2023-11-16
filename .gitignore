@@ -3,8 +3,13 @@
 
 # Compilation folders #
 /bin/
+bin/
 /target/
+target/
 /build/
+build/
+/node_modules/
+node_modules/
 
 # Java compile files #
 *.class
@@ -46,6 +51,7 @@ local.properties
 
 # IntelliJ Idea files #
 .idea
+.idea/
 *.iml
 
 # Windows files #
