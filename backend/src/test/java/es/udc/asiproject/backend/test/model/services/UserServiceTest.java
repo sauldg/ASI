@@ -8,10 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.udc.asiproject.backend.model.exceptions.DuplicateInstanceException;
 import es.udc.asiproject.backend.model.exceptions.InstanceNotFoundException;
-import es.udc.asiproject.backend.model.entities.User;
 import es.udc.asiproject.backend.model.exceptions.IncorrectLoginException;
 import es.udc.asiproject.backend.model.exceptions.IncorrectPasswordException;
-import es.udc.asiproject.backend.model.services.UserService;
 
 import static org.junit.jupiter.api.Assertions.*;
 

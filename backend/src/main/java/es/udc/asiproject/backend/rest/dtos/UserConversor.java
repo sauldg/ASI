@@ -1,7 +1,5 @@
 package es.udc.asiproject.backend.rest.dtos;
 
-import es.udc.asiproject.backend.model.entities.User;
-
 public class UserConversor {
 	
 	private UserConversor() {}

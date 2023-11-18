@@ -1,4 +1,4 @@
-package es.udc.asiproject.backend.model.services;
+package es.udc.asiproject.backend.model.util;
 
 import java.util.List;
 

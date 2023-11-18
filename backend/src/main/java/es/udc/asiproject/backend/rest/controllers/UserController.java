@@ -6,7 +6,6 @@ import java.util.Locale;
 import es.udc.asiproject.backend.model.exceptions.IncorrectLoginException;
 import es.udc.asiproject.backend.model.exceptions.InstanceNotFoundException;
 import es.udc.asiproject.backend.model.exceptions.PermissionException;
-import es.udc.asiproject.backend.model.services.UserService;
 import es.udc.asiproject.backend.rest.common.ErrorsDto;
 import es.udc.asiproject.backend.rest.common.JwtInfo;
 import es.udc.asiproject.backend.rest.dtos.*;
@@ -28,7 +27,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import es.udc.asiproject.backend.model.exceptions.DuplicateInstanceException;
-import es.udc.asiproject.backend.model.entities.User;
 import es.udc.asiproject.backend.model.exceptions.IncorrectPasswordException;
 import es.udc.asiproject.backend.rest.common.JwtGenerator;
 import es.udc.asiproject.backend.rest.dtos.AuthenticatedUserDto;
