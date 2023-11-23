@@ -42,27 +42,28 @@ public class PartServiceImpl implements PartService {
 
     @Override
     public Part create(Part part) {
-        return null;
+        return partDao.save(part);
     }
 
     @Override
-    public Part update(Part draft) {
-        return null;
+    public Part update(Part part) throws InstanceNotFoundException {
+        Part foundPart = partDao.findById(part.getId())
+                .orElseThrow(() -> new InstanceNotFoundException("project.entities.part: "+part.getId()));
+        foundPart.modify(part);
+        return partDao.save(part);
     }
 
     @Override
-    public void increaseAmount(Long id, Long amount) {
-        // FIXME: Preguntar si es necesario tener historial de piezas sino el método de incrementar y decrementar se
-        // podrían poner en uno solo.
-    }
-
-    @Override
-    public void decreaseAmount(Long id, Long amount) {
-
+    public void modifyAmount(Long id, Long amount) throws InstanceNotFoundException {
+        Part foundPart = partDao.findById(id)
+                .orElseThrow(() -> new InstanceNotFoundException("project.entities.part: "+id));
+        foundPart.setAmount(foundPart.getAmount() + amount);
+        partDao.save(foundPart);
     }
 
     @Override
     public boolean deleteById(Long id) {
-        return false;
+        partDao.deleteById(id);
+        return true;
     }
 }

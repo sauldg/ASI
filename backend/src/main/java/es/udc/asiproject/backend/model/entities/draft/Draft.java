@@ -34,5 +34,11 @@ public class Draft {
 
     DraftState state;
 
+    @Transient
+    public void modify(Draft draft) {
+        // FIXME: Completar esto segun os haga falta
+        shippingDetails = draft.getShippingDetails();
+        invoicingDetails = draft.getInvoicingDetails();
+    }
 
 }

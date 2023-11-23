@@ -16,11 +16,9 @@ public interface PartService {
 
     Part create(Part part);
 
-    Part update(Part draft);
+    Part update(Part draft) throws InstanceNotFoundException;
 
-    void increaseAmount(Long id, Long amount);
-
-    void decreaseAmount(Long id, Long amount);
+    void modifyAmount(Long id, Long amount) throws InstanceNotFoundException;
 
     boolean deleteById(Long id);
 

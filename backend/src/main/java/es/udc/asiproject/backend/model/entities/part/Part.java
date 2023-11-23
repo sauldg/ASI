@@ -27,6 +27,8 @@ public class Part {
     @OneToMany(mappedBy = "draft")
     Set<Stock> stock;
 
+    Long amount;
+
     Double price;
 
     @Column(name = "photo_url")
@@ -38,5 +40,14 @@ public class Part {
     Double lastPurchasePrice;
 
     String provider;
+
+    @Transient
+    public void modify(Part part) {
+        // FIXME: Completar esto segun os haga falta
+        name = part.getName();
+        description = part.getDescription();
+        lastPurchasePrice = part.getLastPurchasePrice();
+        provider = part.getProvider();
+    }
 
 }

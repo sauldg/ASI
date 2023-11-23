@@ -20,7 +20,7 @@ public interface DraftService {
 
     Draft create(Draft draft);
 
-    Draft update(Draft draft);
+    Draft update(Draft draft) throws InstanceNotFoundException;
 
     boolean deleteById(Long id);
 
