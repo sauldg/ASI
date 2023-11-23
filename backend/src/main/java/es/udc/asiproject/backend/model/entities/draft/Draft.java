@@ -1,8 +1,11 @@
 package es.udc.asiproject.backend.model.entities.draft;
 
+import es.udc.asiproject.backend.model.entities.stock.Stock;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -18,7 +21,8 @@ public class Draft {
     @GeneratedValue(strategy= GenerationType.AUTO)
     Long id;
 
-    // FIXME: Falta la asociación con Part, puede que haya una entidad intermedia que guarde [Part y cantidad]
+    @OneToMany(mappedBy = "part")
+    Set<Stock> stock;
 
     @Column(name = "shipping_details")
     String shippingDetails;

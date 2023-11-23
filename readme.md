@@ -12,13 +12,13 @@
 ```
 Start Mysql server if not running (e.g. mysqld).
 
-mysqladmin -u root create asiproject -p
-mysqladmin -u root create asiprojecttest -p
+mysqladmin -u root create asi -p
+mysqladmin -u root create asitest -p
 
 mysql -u root -p
-    CREATE USER 'asi'@'localhost' IDENTIFIED BY 'asi';
-    GRANT ALL PRIVILEGES ON asiproject.* to 'asi'@'localhost' WITH GRANT OPTION;
-    GRANT ALL PRIVILEGES ON asiprojecttest.* to 'asi'@'localhost' WITH GRANT OPTION;
+    CREATE USER 'mysqladmin'@'localhost' IDENTIFIED BY 'mysqladmin';
+    GRANT ALL PRIVILEGES ON asi.* to 'mysqladmin'@'localhost' WITH GRANT OPTION;
+    GRANT ALL PRIVILEGES ON asitest.* to 'mysqladmin'@'localhost' WITH GRANT OPTION;
     exit
 ```
 

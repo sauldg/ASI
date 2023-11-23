@@ -37,7 +37,7 @@ public class PartServiceImpl implements PartService {
     @Override
     public Part findById(Long id) throws InstanceNotFoundException {
         return partDao.findById(id)
-                .orElseThrow(() -> new InstanceNotFoundException("project.entities.draft:"+id));
+                .orElseThrow(() -> new InstanceNotFoundException("project.entities.part: "+id));
     }
 
     @Override
@@ -52,7 +52,8 @@ public class PartServiceImpl implements PartService {
 
     @Override
     public void increaseAmount(Long id, Long amount) {
-
+        // FIXME: Preguntar si es necesario tener historial de piezas sino el método de incrementar y decrementar se
+        // podrían poner en uno solo.
     }
 
     @Override

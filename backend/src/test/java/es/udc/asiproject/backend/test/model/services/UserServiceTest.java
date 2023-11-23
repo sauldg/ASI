@@ -1,5 +1,7 @@
 package es.udc.asiproject.backend.test.model.services;
 
+import es.udc.asiproject.backend.model.entities.user.User;
+import es.udc.asiproject.backend.model.services.user.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

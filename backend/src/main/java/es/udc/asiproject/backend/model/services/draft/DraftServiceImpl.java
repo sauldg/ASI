@@ -2,6 +2,7 @@ package es.udc.asiproject.backend.model.services.draft;
 
 import es.udc.asiproject.backend.model.entities.draft.Draft;
 import es.udc.asiproject.backend.model.entities.draft.DraftDao;
+import es.udc.asiproject.backend.model.entities.stock.Stock;
 import es.udc.asiproject.backend.model.util.Block;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -11,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.management.InstanceNotFoundException;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -20,6 +23,9 @@ public class DraftServiceImpl implements DraftService {
 
     @Autowired
     private DraftDao draftDao;
+
+    @Autowired
+    private DraftDao stockDao;
 
     @Override
     public Block<Draft> list(int page, int size) {
@@ -36,7 +42,7 @@ public class DraftServiceImpl implements DraftService {
     @Override
     public Draft findById(Long id) throws InstanceNotFoundException {
         return draftDao.findById(id)
-                .orElseThrow(() -> new InstanceNotFoundException("project.entities.draft:"+id));
+                .orElseThrow(() -> new InstanceNotFoundException("project.entities.draft: "+id));
     }
 
     @Override
@@ -52,5 +58,11 @@ public class DraftServiceImpl implements DraftService {
     @Override
     public boolean deleteById(Long id) {
         return false;
+    }
+
+    @Override
+    public Set<Stock> listStockByDraftId(Long id) {
+        Optional<Draft> draft = draftDao.findById(id);
+        return draft.map(Draft::getStock).orElse(null);
     }
 }

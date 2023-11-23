@@ -3,9 +3,11 @@ package es.udc.asiproject.backend.rest.controllers;
 import java.net.URI;
 import java.util.Locale;
 
+import es.udc.asiproject.backend.model.entities.user.User;
 import es.udc.asiproject.backend.model.exceptions.IncorrectLoginException;
 import es.udc.asiproject.backend.model.exceptions.InstanceNotFoundException;
 import es.udc.asiproject.backend.model.exceptions.PermissionException;
+import es.udc.asiproject.backend.model.services.user.UserService;
 import es.udc.asiproject.backend.rest.common.ErrorsDto;
 import es.udc.asiproject.backend.rest.common.JwtInfo;
 import es.udc.asiproject.backend.rest.dtos.*;

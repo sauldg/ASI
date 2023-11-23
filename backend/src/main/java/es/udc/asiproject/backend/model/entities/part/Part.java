@@ -1,8 +1,10 @@
 package es.udc.asiproject.backend.model.entities.part;
 
+import es.udc.asiproject.backend.model.entities.stock.Stock;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -22,7 +24,8 @@ public class Part {
 
     String name;
 
-    Long amount;
+    @OneToMany(mappedBy = "draft")
+    Set<Stock> stock;
 
     Double price;
 

@@ -20,8 +20,8 @@
     <properties>
     
         <!--  Data source properties -->
-        <dataSource.user>msqladmin</dataSource.user>
-        <dataSource.password>msqladmin</dataSource.password>
+        <dataSource.user>mysqladmin</dataSource.user>
+        <dataSource.password>mysqladmin</dataSource.password>
         <testDataSource.user>${dataSource.user}</testDataSource.user>
         <testDataSource.password>${dataSource.password}</testDataSource.password>
     
