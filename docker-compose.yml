@@ -6,16 +6,16 @@ services:
     restart: unless-stopped
     container_name: mysql
     environment:
-      MYSQL_DATABASE: asi
-      MYSQL_USER: msqladmin
-      MYSQL_PASSWORD: msqladmin
-      MYSQL_ROOT_PASSWORD: msqladmin
+      MYSQL_USER: mysqladmin
+      MYSQL_PASSWORD: mysqladmin
+      MYSQL_ROOT_PASSWORD: mysqladmin
     ports:
       - '3306:3306'
     expose:
       - '3306'
     volumes:
       - db-data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       interval: 30s
