@@ -2,11 +2,13 @@ package es.udc.asiproject.backend.model.util;
 
 import io.minio.*;
 import io.minio.errors.*;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
+@Service
 public class MinioService {
 
     private MinioClient getClient() {

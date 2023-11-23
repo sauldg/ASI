@@ -4,6 +4,7 @@ import es.udc.asiproject.backend.model.entities.part.Part;
 import es.udc.asiproject.backend.model.util.Block;
 
 import javax.management.InstanceNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 public interface PartService {

@@ -1,6 +1,7 @@
 package es.udc.asiproject.backend.model.entities.part;
 
 import es.udc.asiproject.backend.model.entities.stock.Stock;
+import es.udc.asiproject.backend.rest.dtos.FileDTO;
 import lombok.*;
 
 import javax.persistence.*;
@@ -40,6 +41,9 @@ public class Part {
     Double lastPurchasePrice;
 
     String provider;
+
+    @Transient
+    FileDTO fileDTO;
 
     @Transient
     public void modify(Part part) {

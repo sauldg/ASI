@@ -2,12 +2,7 @@ package es.udc.asiproject.backend.rest.dtos;
 
 import es.udc.asiproject.backend.model.entities.draft.Draft;
 import es.udc.asiproject.backend.model.entities.draft.DraftState;
-import es.udc.asiproject.backend.model.entities.stock.Stock;
 import lombok.*;
-
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
-import java.util.Set;
 
 @Setter
 @Getter

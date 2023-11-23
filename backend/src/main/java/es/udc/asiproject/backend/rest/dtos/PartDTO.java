@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.OneToMany;
+import java.io.File;
 import java.util.Set;
 
 @Setter
@@ -27,6 +28,8 @@ public class PartDTO {
     Double price;
 
     String photoUrl;
+
+    FileDTO photo;
 
     String description;
 
