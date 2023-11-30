@@ -1,0 +1,1 @@
+export const LIST_DRAFTS_COMPLETED = "project/drafts/listDraftsCompleted";

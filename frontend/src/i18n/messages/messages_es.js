@@ -5,6 +5,7 @@ export default {
     'project.app.Header.home': 'Inicio',
     'project.app.Header.logout': 'Salir',
     'project.app.Home.welcome': '¡Contenido de la página principal de ASI Project!',
+    'project.app.Header.drafts': 'Borradores',
     
     'project.common.ErrorDialog.title': 'Error',
 

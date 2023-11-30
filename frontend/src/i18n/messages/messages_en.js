@@ -5,6 +5,7 @@ export default {
     'project.app.Header.home': 'Home',
     'project.app.Header.logout': 'Logout',
     'project.app.Home.welcome': 'MiniPortal main page content!',
+    'project.app.Header.drafts': 'Drafts',
 
     'project.common.ErrorDialog.title': 'Error',
 

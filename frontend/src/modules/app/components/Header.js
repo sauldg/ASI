@@ -23,6 +23,14 @@ const Header = () => {
 
                 <ul className="navbar-nav mr-auto">
                 </ul>
+
+                <ul className="navbar-nav">
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/draft/all">
+                            <FormattedMessage id="project.app.Header.drafts"/>
+                        </Link>
+                    </li>
+                </ul>
                 
                 {userName ? 
 
