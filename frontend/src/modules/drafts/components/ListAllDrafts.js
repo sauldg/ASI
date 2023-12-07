@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 
 
 
-const ListDrafts = () => {
+const ListAllDrafts = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -20,4 +20,4 @@ const ListDrafts = () => {
     return null;
 }
 
-export default ListDrafts;
+export default ListAllDrafts;

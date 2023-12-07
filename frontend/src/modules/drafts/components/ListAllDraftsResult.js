@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import * as selectors from '../selectors';
 import Drafts from './Drafts';
 
-const ListDraftsResult = () => {
+const ListAllDraftsResult = () => {
 
     const drafts = useSelector(selectors.getDrafts);
 
@@ -30,4 +30,4 @@ const ListDraftsResult = () => {
 
 }
 
-export default ListDraftsResult;
+export default ListAllDraftsResult;

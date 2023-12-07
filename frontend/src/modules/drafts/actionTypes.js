@@ -1,1 +1,1 @@
-export const LIST_DRAFTS_COMPLETED = "project/drafts/listDraftsCompleted";
+export const LIST_ALL_DRAFTS_COMPLETED = "project/drafts/listAllDraftsCompleted";

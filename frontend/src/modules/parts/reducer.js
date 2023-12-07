@@ -2,20 +2,20 @@ import {combineReducers} from 'redux';
 import * as actionTypes from './actionTypes';
 
 const initialState = {
-    drafts: null
+    parts: null
 };
 
-const listAllDrafts = (state = initialState.listAllDrafts, action) => {
+const getPartById = (state = initialState.getPartById, action) => {
     switch (action.type) {
-        case actionTypes.LIST_ALL_DRAFTS_COMPLETED:
-            return listAllDrafts(state, action);
+        case actionTypes.GET_PART_BY_ID_COMPLETED:
+            return getPartById(state, action);
         default:
             return state;
     }
 };
 
 const reducer = combineReducers => ({
-    listAllDrafts
+    getPartById
 });
 
 export default reducer;

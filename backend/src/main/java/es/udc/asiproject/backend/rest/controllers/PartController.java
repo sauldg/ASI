@@ -55,9 +55,9 @@ public class PartController {
 
     @PutMapping("")
     @Transactional
-    public ResponseEntity<PartDTO> updatePart(@RequestBody Part draft) {
+    public ResponseEntity<PartDTO> updatePart(@RequestBody Part part) {
         try {
-            Part updatedPart = partService.update(draft);
+            Part updatedPart = partService.update(part);
             return ResponseEntity.ok(new PartDTO(updatedPart));
         } catch (InstanceNotFoundException e) {
             return ResponseEntity.notFound().build();

@@ -5,7 +5,8 @@ import AppGlobalComponents from './AppGlobalComponents';
 import Home from './Home';
 import {Login, SignUp, UpdateProfile, ChangePassword, Logout} from '../../users';
 import users from '../../users';
-import {ListDrafts, ListDraftsResult} from '../../drafts';
+import {ListAllDrafts, ListAllDraftsResult} from '../../drafts';
+import {PartDetails} from '../../parts';
 
 const Body = () => {
 
@@ -18,8 +19,9 @@ const Body = () => {
             <AppGlobalComponents/>
             <Routes>
                 <Route path="/" element={<Home/>}/>
-                <Route path="/draft/all" element={<ListDrafts/>}/>
-                <Route path="/draft/all-result" element={<ListDraftsResult/>}/>
+                <Route path="/draft/all" element={<ListAllDrafts/>}/>
+                <Route path="/draft/all-result" element={<ListAllDraftsResult/>}/>
+                <Route path="/part/:id" element={<PartDetails/>}/>
                 {loggedIn && <Route path="/users/update-profile" element={<UpdateProfile/>}/>}
                 {loggedIn && <Route path="/users/change-password" element={<ChangePassword/>}/>}
                 {loggedIn && <Route path="/users/logout" element={<Logout/>}/>}
