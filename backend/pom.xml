@@ -40,6 +40,7 @@
     </properties>
     
     <profiles>
+        <!-- Profile for main db -->
         <profile>
             <id>mysql</id>
             <activation>
@@ -58,6 +59,27 @@
                 <testDataSource.url>${dataSource.baseUrl}test?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Europe/Madrid</testDataSource.url>
                 <dataSource.createTablesScript>1-MySQLCreateTables.sql</dataSource.createTablesScript>
                 <dataSource.createDataScript>2-MySQLCreateData.sql</dataSource.createDataScript>
+            </properties>
+        </profile>
+
+        <!-- Profile for test -->
+        <profile>
+            <id>mysql-test</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!-- JDBC driver properties -->
+                <jdbcDriver.groupId>mysql</jdbcDriver.groupId>
+                <jdbcDriver.artifactId>mysql-connector-java</jdbcDriver.artifactId>
+                <jdbcDriver.version>8.0.29</jdbcDriver.version>
+                <jdbcDriver.className>com.mysql.cj.jdbc.Driver</jdbcDriver.className>
+
+                <!-- Data source properties for test database -->
+                <testDataSource.baseUrl>jdbc:mysql://localhost:3306/asitest</testDataSource.baseUrl>
+                <testDataSource.url>${testDataSource.baseUrl}?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Europe/Madrid</testDataSource.url>
+                <testDataSource.createTablesScript>1-MySQLCreateTablesTest.sql</testDataSource.createTablesScript>
+                <testDataSource.createDataScript>2-MySQLCreateDataTest.sql</testDataSource.createDataScript>
             </properties>
         </profile>
     </profiles>

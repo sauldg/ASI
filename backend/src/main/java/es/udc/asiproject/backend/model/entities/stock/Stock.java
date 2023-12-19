@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Entity
 public class Stock {
     @EmbeddedId

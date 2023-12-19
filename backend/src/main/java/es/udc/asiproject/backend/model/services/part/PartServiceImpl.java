@@ -49,9 +49,12 @@ public class PartServiceImpl implements PartService {
             Part part = partDao.findById(id)
                     .orElseThrow(() -> new InstanceNotFoundException("project.entities.part: "+id));
             FileDTO fileDTO = new FileDTO();
+            String content;
             InputStream stream = minioService.downloadObject(part.getPhotoUrl());
-            String content = new String(stream.readAllBytes(), StandardCharsets.UTF_8);
-            fileDTO.setContent(content);
+            if(stream != null) {
+                content = new String(stream.readAllBytes(), StandardCharsets.UTF_8);
+                fileDTO.setContent(content);
+            }
             return part;
         } catch (Exception e) {
             throw new IllegalArgumentException(e);

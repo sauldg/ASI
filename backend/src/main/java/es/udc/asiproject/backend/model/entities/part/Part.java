@@ -14,7 +14,6 @@ import java.util.Set;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-@Table(name = "part") // , schema = "hermenegildo"
 public class Part {
 
     @Id

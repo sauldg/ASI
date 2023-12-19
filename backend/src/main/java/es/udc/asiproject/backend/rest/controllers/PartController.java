@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/part")
+@RequestMapping("/parts")
 public class PartController {
 
     @Autowired

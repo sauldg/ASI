@@ -14,7 +14,6 @@ import java.util.Set;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-@Table(name = "draft")
 public class Draft {
 
     @Id
@@ -32,6 +31,7 @@ public class Draft {
 
     String providers; // FIXME: Puede que sea una lista
 
+    @Enumerated(EnumType.STRING)
     DraftState state;
 
     @Transient

@@ -28,6 +28,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.addFilter(new JwtFilter(authenticationManager(), jwtGenerator))
 			.authorizeRequests()
+			// Drafts
+			.antMatchers(HttpMethod.GET, "/drafts").permitAll()
+			.antMatchers(HttpMethod.GET, "/drafts/all").permitAll()
+			.antMatchers(HttpMethod.GET, "/drafts/*").permitAll()
+			.antMatchers(HttpMethod.POST, "/drafts").permitAll()
+			.antMatchers(HttpMethod.PUT, "/drafts/*").permitAll()
+			.antMatchers(HttpMethod.DELETE, "/drafts/*").permitAll()
+
+			// Parts
+			.antMatchers(HttpMethod.GET, "/parts").permitAll()
+			.antMatchers(HttpMethod.GET, "/parts/all").permitAll()
+			.antMatchers(HttpMethod.GET, "/parts/*").permitAll()
+			.antMatchers(HttpMethod.POST, "/parts").permitAll()
+			.antMatchers(HttpMethod.PUT, "/parts/*").permitAll()
+			.antMatchers(HttpMethod.DELETE, "/parts/*").permitAll()
+
 			.antMatchers(HttpMethod.POST, "/users/signUp").permitAll()
 			.antMatchers(HttpMethod.POST, "/users/login").permitAll()
 			.antMatchers(HttpMethod.POST, "/users/loginFromServiceToken").permitAll()

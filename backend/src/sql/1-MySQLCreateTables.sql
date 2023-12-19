@@ -22,6 +22,7 @@ CREATE TABLE Part (
     id BIGINT NOT NULL AUTO_INCREMENT,
     reference VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL,
+    amount BIGINT NOT NULL,
     price DOUBLE(5,3) NOT NULL,
     photo_url VARCHAR(255) NOT NULL,
     description TEXT(500) NOT NULL,
