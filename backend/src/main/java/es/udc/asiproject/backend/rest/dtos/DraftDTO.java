@@ -20,7 +20,7 @@ public class DraftDTO {
 
     String providers;
 
-    DraftState state;
+    String state;
 
 
     public DraftDTO(Draft draft) {
@@ -29,7 +29,7 @@ public class DraftDTO {
         shippingDetails = draft.getShippingDetails();
         invoicingDetails = draft.getInvoicingDetails();
         providers = draft.getProviders();
-        state = draft.getState();
+        state = draft.getState().toString();
     }
 
     public Draft toEntity() {

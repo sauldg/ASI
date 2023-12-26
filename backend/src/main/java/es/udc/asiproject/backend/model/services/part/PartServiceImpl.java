@@ -54,6 +54,7 @@ public class PartServiceImpl implements PartService {
             if(stream != null) {
                 content = new String(stream.readAllBytes(), StandardCharsets.UTF_8);
                 fileDTO.setContent(content);
+                part.setFileDTO(fileDTO);
             }
             return part;
         } catch (Exception e) {

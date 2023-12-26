@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 import es.udc.asiproject.backend.model.entities.part.Part;
 import es.udc.asiproject.backend.model.services.part.PartService;
 import es.udc.asiproject.backend.model.util.Block;
+import es.udc.asiproject.backend.rest.dtos.PartConverter;
 import es.udc.asiproject.backend.rest.dtos.PartDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,7 +41,7 @@ public class PartController {
     public ResponseEntity<PartDTO> getPartById(@PathVariable Long id) {
         try {
             Part part = partService.findById(id);
-            return ResponseEntity.ok(new PartDTO(part));
+            return ResponseEntity.ok(PartConverter.convertToDto(part));
         } catch (InstanceNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
@@ -50,7 +51,7 @@ public class PartController {
     @Transactional
     public ResponseEntity<PartDTO> createPart(@RequestBody Part part) {
         Part createdPart = partService.create(part);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new PartDTO(createdPart));
+        return ResponseEntity.status(HttpStatus.CREATED).body(PartConverter.convertToDto(createdPart));
     }
 
     @PutMapping("")
@@ -58,7 +59,7 @@ public class PartController {
     public ResponseEntity<PartDTO> updatePart(@RequestBody Part part) {
         try {
             Part updatedPart = partService.update(part);
-            return ResponseEntity.ok(new PartDTO(updatedPart));
+            return ResponseEntity.ok(PartConverter.convertToDto(updatedPart));
         } catch (InstanceNotFoundException e) {
             return ResponseEntity.notFound().build();
         }

@@ -4,6 +4,7 @@ import es.udc.asiproject.backend.model.entities.draft.Draft;
 import es.udc.asiproject.backend.model.entities.stock.Stock;
 import es.udc.asiproject.backend.model.services.draft.DraftService;
 import es.udc.asiproject.backend.model.util.Block;
+import es.udc.asiproject.backend.rest.dtos.DraftConverter;
 import es.udc.asiproject.backend.rest.dtos.DraftDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,7 +42,7 @@ public class DraftController {
     public ResponseEntity<DraftDTO> getDraftById(@PathVariable Long id) {
         try {
             Draft draft = draftService.findById(id);
-            return ResponseEntity.ok(new DraftDTO(draft));
+            return ResponseEntity.ok(DraftConverter.convertToDto(draft));
         } catch (InstanceNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
@@ -58,7 +59,7 @@ public class DraftController {
     @Transactional
     public ResponseEntity<DraftDTO> createDraft(@RequestBody Draft draft) {
         Draft createdDraft = draftService.create(draft);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new DraftDTO(createdDraft));
+        return ResponseEntity.status(HttpStatus.CREATED).body(DraftConverter.convertToDto(createdDraft));
     }
 
     @PutMapping("")
@@ -66,7 +67,7 @@ public class DraftController {
     public ResponseEntity<DraftDTO> updateDraft(@RequestBody Draft draft) {
         try {
             Draft updatedDraft = draftService.update(draft);
-            return ResponseEntity.ok(new DraftDTO(updatedDraft));
+            return ResponseEntity.ok(DraftConverter.convertToDto(updatedDraft));
         } catch (InstanceNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
