@@ -25,6 +25,11 @@ export default {
     'project.global.fields.postalAddress': 'Dirección postal',
     'project.global.fields.postalCode': 'Código postal',
     'project.global.fields.userName': 'Usuario',
+    'project.global.fields.id': 'Identificador',
+    'project.global.fields.shippingDetails': 'Datos de envío',
+    'project.global.fields.invoicingDetails': 'Datos de facturación',
+    'project.global.fields.providers': 'Proveedores',
+    'project.global.fields.state': 'Estado',
     'project.global.validator.email': 'Introduzca unha dirección de correo electrónico correcta',
     'project.global.validator.passwordsDoNotMatch': 'As contrasinais non coinciden',
     'project.global.validator.required': 'Campo obrigatorio',
@@ -36,6 +41,9 @@ export default {
     'project.users.Login.title': 'Autenticarse',
     'project.users.SignUp.fields.confirmPassword': 'Confirmar contrasinal',
     'project.users.SignUp.title': 'Rexistrarse',
-    'project.users.UpdateProfile.title': 'Actualizar perfil'
+    'project.users.UpdateProfile.title': 'Actualizar perfil',
+
+    'project.drafts.ListDrafts.id': 'Borradores',
+    'project.drafts.ListDrafts.noDraftsFound': 'Non se atoparon borradores',
 
 }

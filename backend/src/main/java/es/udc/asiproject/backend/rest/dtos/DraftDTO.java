@@ -22,9 +22,14 @@ public class DraftDTO {
 
     DraftState state;
 
+
     public DraftDTO(Draft draft) {
         // FIXME: Completar esto
         id = draft.getId();
+        shippingDetails = draft.getShippingDetails();
+        invoicingDetails = draft.getInvoicingDetails();
+        providers = draft.getProviders();
+        state = draft.getState();
     }
 
     public Draft toEntity() {

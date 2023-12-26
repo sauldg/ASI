@@ -1,5 +1,6 @@
 import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 const Drafts = ({drafts}) => (
 
@@ -8,10 +9,13 @@ const Drafts = ({drafts}) => (
         <thead>
         <tr>
             <th scope="col">
-                <FormattedMessage id='project.global.fields.shipping_details'/>
+                <FormattedMessage id='project.global.fields.id'/>
             </th>
             <th scope="col">
-                <FormattedMessage id='project.global.fields.invoicing_details'/>
+                <FormattedMessage id='project.global.fields.shippingDetails'/>
+            </th>
+            <th scope="col">
+                <FormattedMessage id='project.global.fields.invoicingDetails'/>
             </th>
             <th scope="col">
                 <FormattedMessage id='project.global.fields.providers'/>
@@ -25,7 +29,15 @@ const Drafts = ({drafts}) => (
         <tbody id="tableDrafts">
         {drafts.map(draft =>
             <tr key={draft.id}>
-                <td>{draft.id}</td>
+                <td>
+                    <Link id="draftLink" to={`/drafts/${draft.id}`}>
+                        {draft.id}
+                    </Link>
+                </td>
+                <td>{draft.shippingDetails}</td>
+                <td>{draft.invoicingDetails}</td>
+                <td>{draft.providers}</td>
+                <td>{draft.state}</td>
                 
             </tr>
         )}

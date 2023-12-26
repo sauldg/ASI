@@ -29,7 +29,7 @@ const PartDetails = () => {
     }, [id, dispatch]);
 
     if (!part) {
-        return null;
+        return (<h4>{"No funciona"}</h4>);
     }
 
     return(

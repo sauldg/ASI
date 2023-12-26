@@ -7,7 +7,25 @@ const listAllDraftsCompleted = (drafts) => ({
 });
 
 export const listAllDrafts = () => dispatch => {
-    backend.draftService.listAllDrafts(drafts => {
-        dispatch(listAllDraftsCompleted(drafts));
+    backend.draftService.listAllDrafts(result => {
+        dispatch(listAllDraftsCompleted(result));
     });
+}
+
+export const clearMyDrafts = () => ({
+    type: actionTypes.CLEAR_MY_DRAFTS
+});
+
+export const clearDraft = () => ({
+    type: actionTypes.CLEAR_DRAFT
+});
+
+const findDraftByIdCompleted = (draft) => ({
+    type: actionTypes.FIND_DRAFT_BY_ID_COMPLETED,
+    draft
+});
+
+export const getDraftById = (id) => dispatch => {
+    backend.draftService.getDraftById(id, 
+        draft => dispatch(findDraftByIdCompleted(draft)));
 }

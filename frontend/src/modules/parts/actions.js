@@ -6,10 +6,9 @@ const getPartByIdCompleted = (parts) => ({
     parts
 });
 
-export const getPartById = id => dispatch => {
-    backend.partService.getPartById(id, parts => {
-        dispatch(getPartByIdCompleted(parts));
-    });
+export const getPartById = (id) => dispatch => {
+    backend.partService.getPartById(id, 
+        part => dispatch(getPartByIdCompleted(part)));
 }
 
 export const clearPart = () => ({

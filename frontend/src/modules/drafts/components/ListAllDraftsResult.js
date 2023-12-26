@@ -5,13 +5,13 @@ import Drafts from './Drafts';
 
 const ListAllDraftsResult = () => {
 
-    const drafts = useSelector(selectors.getDrafts);
+    const draft = useSelector(selectors.getDrafts);
 
-    if (!drafts) {
+    if (!draft) {
         return (<h4>{"No funciona"}</h4>);
     }
 
-    if (drafts.result.items.length === 0) {
+   if (draft.length === 0) {
         return (
             <div className="alert alert-danger" role="alert">
                 <FormattedMessage id='project.drafts.ListDrafts.noDraftsFound'/>
@@ -19,11 +19,13 @@ const ListAllDraftsResult = () => {
         );
     }
 
+    //<Drafts drafts={draft.result.items}/>
+
     return (
 
         <div>
             <h4><FormattedMessage id="project.drafts.ListDrafts.id"/></h4>
-            <Drafts draft={drafts.result.items}/>
+            <Drafts drafts={draft}/>
         </div>
 
     );

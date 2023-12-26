@@ -26,7 +26,7 @@ const Header = () => {
 
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/draft/all">
+                        <Link className="nav-link" to="/drafts/all">
                             <FormattedMessage id="project.app.Header.drafts"/>
                         </Link>
                     </li>

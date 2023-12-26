@@ -7,6 +7,7 @@ import {Login, SignUp, UpdateProfile, ChangePassword, Logout} from '../../users'
 import users from '../../users';
 import {ListAllDrafts, ListAllDraftsResult} from '../../drafts';
 import {PartDetails} from '../../parts';
+import {DraftDetails} from '../../drafts';
 
 const Body = () => {
 
@@ -19,9 +20,10 @@ const Body = () => {
             <AppGlobalComponents/>
             <Routes>
                 <Route path="/" element={<Home/>}/>
-                <Route path="/draft/all" element={<ListAllDrafts/>}/>
-                <Route path="/draft/all-result" element={<ListAllDraftsResult/>}/>
-                <Route path="/part/:id" element={<PartDetails/>}/>
+                <Route path="/drafts/all" element={<ListAllDrafts/>}/>
+                <Route path="/drafts/all/all-results" element={<ListAllDraftsResult/>}/>
+                <Route path="/drafts/:id" element={<DraftDetails/>}/>
+                <Route path="/parts/:id" element={<PartDetails/>}/>
                 {loggedIn && <Route path="/users/update-profile" element={<UpdateProfile/>}/>}
                 {loggedIn && <Route path="/users/change-password" element={<ChangePassword/>}/>}
                 {loggedIn && <Route path="/users/logout" element={<Logout/>}/>}

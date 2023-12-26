@@ -25,6 +25,11 @@ export default {
     'project.global.fields.postalAddress': 'Postal address',
     'project.global.fields.postalCode': 'Postal code',
     'project.global.fields.userName': 'Username',
+    'project.global.fields.id': 'Identifier',
+    'project.global.fields.shippingDetails': 'Shipping details',
+    'project.global.fields.invoicingDetails': 'Invoicing details',
+    'project.global.fields.providers': 'Providers',
+    'project.global.fields.state': 'State',
     'project.global.validator.email': 'Provide a correct e-mail address',
     'project.global.validator.passwordsDoNotMatch': 'Passwords do not match',
     'project.global.validator.required': 'Required field',
@@ -36,6 +41,9 @@ export default {
     'project.users.Login.title': 'Login',
     'project.users.SignUp.fields.confirmPassword': 'Confirm password',
     'project.users.SignUp.title': 'Sign up',
-    'project.users.UpdateProfile.title': 'Update profile'
+    'project.users.UpdateProfile.title': 'Update profile',
+
+    'project.drafts.ListDrafts.id': 'Drafts',
+    'project.drafts.ListDrafts.noDraftsFound': 'No drafts found',
 
 }
