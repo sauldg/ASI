@@ -40,6 +40,14 @@ public class PartDTO {
     public PartDTO(Part part) {
         // FIXME: Completar esto
         id = part.getId();
+        reference = part.getReference();
+        name = part.getName();
+        amount = part.getAmount();
+        price = part.getPrice();
+        photoUrl = part.getPhotoUrl();
+        description = part.getDescription();
+        lastPurchasePrice = part.getLastPurchasePrice();
+        provider = part.getProvider();
     }
 
     public Part toEntity() {

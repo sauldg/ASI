@@ -4,6 +4,8 @@ import reducer from './reducer';
 import * as selectors from './selectors';
 
 export {default as PartDetails} from './components/PartDetails';
+export {default as ListAllParts} from './components/ListAllParts';
+export {default as ListAllPartsResult} from './components/ListAllPartsResult';
 
 // eslint-disable-next-line
 export default {actions, actionTypes, reducer, selectors};

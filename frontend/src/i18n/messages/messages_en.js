@@ -6,6 +6,7 @@ export default {
     'project.app.Header.logout': 'Logout',
     'project.app.Home.welcome': 'MiniPortal main page content!',
     'project.app.Header.drafts': 'Drafts',
+    'project.app.Header.parts': 'Parts',
 
     'project.common.ErrorDialog.title': 'Error',
 
@@ -30,6 +31,11 @@ export default {
     'project.global.fields.invoicingDetails': 'Invoicing details',
     'project.global.fields.providers': 'Providers',
     'project.global.fields.state': 'State',
+    'project.global.fields.price': 'Price (€)',
+    'project.global.fields.amount': 'Amount',
+    'project.global.fields.descripcion': 'Description',
+    'project.global.fields.reference': 'Reference',
+    'project.global.fields.lastPurchasePrice': 'Last purchase price (€)',
     'project.global.validator.email': 'Provide a correct e-mail address',
     'project.global.validator.passwordsDoNotMatch': 'Passwords do not match',
     'project.global.validator.required': 'Required field',
@@ -43,7 +49,7 @@ export default {
     'project.users.SignUp.title': 'Sign up',
     'project.users.UpdateProfile.title': 'Update profile',
 
-    'project.drafts.ListDrafts.id': 'Drafts',
     'project.drafts.ListDrafts.noDraftsFound': 'No drafts found',
+    'project.parts.ListParts.noPartsFound': 'No parts found',
 
 }

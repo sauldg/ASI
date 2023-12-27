@@ -6,10 +6,10 @@ import * as actions from '../actions';
 import * as selectors from '../selectors';
 import { useParams } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { BackLink } from '../../common';
 
 
 const DraftDetails = () => {
-    // Add your code to fetch and display the draft details here
     const draft = useSelector(selectors.getDraft);
     const dispatch = useDispatch();
     const {id} = useParams();
@@ -33,6 +33,7 @@ const DraftDetails = () => {
     return (
         
         <div>
+            <BackLink/>
             <div className="card text-center">
                 <h5 id="id">
                     <FormattedMessage id='project.global.fields.id'/>

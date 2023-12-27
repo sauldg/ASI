@@ -2,22 +2,35 @@ import { combineReducers } from 'redux';
 import * as actionTypes from './actionTypes';
 
 const initialState = {
-    parts: null
+    parts: null,
+    part: null
 };
 
-const getPartById = (state = initialState.parts, action) => {
+const parts = (state = initialState.parts, action) => {
+    switch (action.type) {
+        case actionTypes.LIST_ALL_PARTS_COMPLETED:
+            return action.parts;
+        case actionTypes.CLEAR_PARTS:
+            return initialState.parts;
+        default:
+            return state;
+    }
+}
+
+const part = (state = initialState.part, action) => {
     switch (action.type) {
         case actionTypes.GET_PART_BY_ID_COMPLETED:
-            return action.parts; // Asumiendo que action.part contiene los datos del parte
+            return action.part;
         case actionTypes.CLEAR_PART:
-            return initialState.parts;
+            return initialState.part;
         default:
             return state;
     }
 };
 
 const reducer = combineReducers({
-    getPartById
+    parts,
+    part,
 });
 
 export default reducer;

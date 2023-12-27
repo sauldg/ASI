@@ -13,7 +13,9 @@ public class PartConverter {
                 .photoUrl(part.getPhotoUrl())
                 .photo(part.getFileDTO())
                 .description(part.getDescription())
-                .lastPurchasePrice(part.getLastPurchasePrice()).build();
+                .lastPurchasePrice(part.getLastPurchasePrice())
+                .provider(part.getProvider())
+                .build();
     }
 
     public static Part convertToPart(PartDTO partDto) {
@@ -27,6 +29,7 @@ public class PartConverter {
                 .fileDTO(partDto.photo)
                 .description(partDto.description)
                 .lastPurchasePrice(partDto.lastPurchasePrice)
+                .provider(partDto.provider)
                 .build();
     }
 }

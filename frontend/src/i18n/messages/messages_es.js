@@ -6,6 +6,7 @@ export default {
     'project.app.Header.logout': 'Salir',
     'project.app.Home.welcome': '¡Contenido de la página principal de ASI Project!',
     'project.app.Header.drafts': 'Borradores',
+    'project.app.Header.parts': 'Piezas',
     
     'project.common.ErrorDialog.title': 'Error',
 
@@ -30,6 +31,11 @@ export default {
     'project.global.fields.invoicingDetails': 'Datos de facturación',
     'project.global.fields.providers': 'Proveedores',
     'project.global.fields.state': 'Estado',
+    'project.global.fields.price': 'Precio (€)',
+    'project.global.fields.amount': 'Cantidad',
+    'project.global.fields.descripcion': 'Descripción',
+    'project.global.fields.reference': 'Referencia',
+    'project.global.fields.lastPurchasePrice': 'Último precio de compra (€)',
     'project.global.validator.email': 'Introduzca una dirección de correo electrónico correcta',
     'project.global.validator.passwordsDoNotMatch': 'Las contraseñas no coinciden',
     'project.global.validator.required': 'Campo obligatorio',
@@ -43,7 +49,7 @@ export default {
     'project.users.SignUp.title': 'Registrarse',
     'project.users.UpdateProfile.title': 'Actualizar perfil',
 
-    'project.drafts.ListDrafts.id': 'Borradores',
     'project.drafts.ListDrafts.noDraftsFound': 'No se han encontrado borradores',
+    'project.parts.ListParts.noPartsFound': 'No se han encontrado piezas',
 
 }

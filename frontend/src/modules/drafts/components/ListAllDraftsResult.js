@@ -19,12 +19,10 @@ const ListAllDraftsResult = () => {
         );
     }
 
-    //<Drafts drafts={draft.result.items}/>
-
     return (
 
         <div>
-            <h4><FormattedMessage id="project.drafts.ListDrafts.id"/></h4>
+            <h4><FormattedMessage id="project.app.Header.drafts"/></h4>
             <Drafts drafts={draft}/>
         </div>
 

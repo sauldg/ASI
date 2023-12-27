@@ -1,4 +1,6 @@
 const getModuleState = state => state.parts;
 
-export const getPartById = state => getModuleState(state).part;
+export const getParts = state => getModuleState(state).parts;
+
+export const getPart = state => getModuleState(state).part;
 
