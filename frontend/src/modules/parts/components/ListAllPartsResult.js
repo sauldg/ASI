@@ -1,33 +1,38 @@
-import {FormattedMessage} from 'react-intl';
-import {useSelector} from 'react-redux';
+import React, { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+import { useSelector } from 'react-redux';
 import * as selectors from '../selectors';
 import Parts from './Parts';
 
 const ListAllPartsResult = () => {
+    const parts = useSelector(selectors.getParts);
+    const [searchTerm, setSearchTerm] = useState('');
 
-    const part = useSelector(selectors.getParts);
-
-    if (!part) {
-        return (<h4>{"No funciona"}</h4>);
+    if (!parts) {
+        return <h4>{"No funciona"}</h4>;
     }
 
-   if (part.length === 0) {
-        return (
-            <div className="alert alert-danger" role="alert">
-                <FormattedMessage id='project.parts.ListParts.noPartsFound'/>
-            </div>
-        );
-    }
-
-    return (
-
-        <div>
-            <h4><FormattedMessage id="project.app.Header.parts"/></h4>
-            <Parts parts={part}/>
-        </div>
-
+    const filteredParts = parts.filter(
+        part =>
+            part.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            part.reference.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            part.description.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-}
+    return (
+        <div>
+            <h4><FormattedMessage id="project.app.Header.parts"/></h4>
+
+            <input
+                type="text"
+                placeholder="Buscar por nombre, referencia o descripción"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
+
+            <Parts parts={filteredParts}/>
+        </div>
+    );
+};
 
 export default ListAllPartsResult;

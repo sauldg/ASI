@@ -15,10 +15,10 @@ const Parts = ({parts}) => (
                 <FormattedMessage id='project.global.fields.name'/>
             </th>
             <th scope="col">
-                <FormattedMessage id='project.global.fields.price'/>
+                <FormattedMessage id='project.global.fields.reference'/>
             </th>
             <th scope="col">
-                <FormattedMessage id='project.global.fields.amount'/>
+                <FormattedMessage id='project.global.fields.descripcion'/>
             </th>
             <th scope="col">
                 <FormattedMessage id='project.global.fields.providers'/>
@@ -35,8 +35,8 @@ const Parts = ({parts}) => (
                     </Link>
                 </td>
                 <td>{part.name}</td>
-                <td>{part.price}</td>
-                <td>{part.amount}</td>
+                <td>{part.reference}</td>
+                <td>{part.description}</td>
                 <td>{part.provider}</td>
                 
             </tr>
