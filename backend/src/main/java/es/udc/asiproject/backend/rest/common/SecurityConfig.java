@@ -13,6 +13,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -43,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.POST, "/parts").permitAll()
 			.antMatchers(HttpMethod.PUT, "/parts/*").permitAll()
 			.antMatchers(HttpMethod.DELETE, "/parts/*").permitAll()
+			.antMatchers(HttpMethod.DELETE, "/parts/*/image").permitAll()
 
 			.antMatchers(HttpMethod.POST, "/users/signUp").permitAll()
 			.antMatchers(HttpMethod.POST, "/users/login").permitAll()
@@ -60,7 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		
 		config.setAllowCredentials(true);
-	    config.setAllowedOriginPatterns(Arrays.asList("*"));
+	    config.setAllowedOriginPatterns(List.of("*"));
 	    config.addAllowedHeader("*");
 	    config.addAllowedMethod("*");
 	    

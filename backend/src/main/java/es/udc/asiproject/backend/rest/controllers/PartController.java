@@ -6,13 +6,20 @@ import javax.transaction.Transactional;
 import es.udc.asiproject.backend.model.entities.part.Part;
 import es.udc.asiproject.backend.model.services.part.PartService;
 import es.udc.asiproject.backend.model.util.Block;
+import es.udc.asiproject.backend.model.util.MinioService;
 import es.udc.asiproject.backend.rest.dtos.PartConverter;
 import es.udc.asiproject.backend.rest.dtos.PartDTO;
+import io.minio.errors.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +29,8 @@ public class PartController {
 
     @Autowired
     private PartService partService;
+    @Autowired
+    private MinioService minioService;
 
     @GetMapping("")
     public ResponseEntity<Block<PartDTO>> listParts(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
@@ -44,6 +53,25 @@ public class PartController {
             return ResponseEntity.ok(PartConverter.convertToDto(part));
         } catch (InstanceNotFoundException e) {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/{id}/image")
+    public ResponseEntity<byte[]> getPartImage(@PathVariable Long id) {
+        try {
+            Part part = partService.findById(id);
+            MediaType type = MediaType.valueOf(minioService.getObjectType(part.getPhotoUrl()));
+
+            return ResponseEntity.ok()
+                    .contentType(type)
+                    .body(minioService.downloadObject(part.getPhotoUrl()).readAllBytes());
+
+        } catch (InstanceNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        } catch (ServerException | InsufficientDataException | ErrorResponseException | IOException |
+                 NoSuchAlgorithmException | InvalidKeyException | InvalidResponseException | XmlParserException |
+                 InternalException e) {
+            throw new RuntimeException(e);
         }
     }
 

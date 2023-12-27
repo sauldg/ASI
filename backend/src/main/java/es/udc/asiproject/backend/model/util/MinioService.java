@@ -2,11 +2,13 @@ package es.udc.asiproject.backend.model.util;
 
 import io.minio.*;
 import io.minio.errors.*;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Map;
 
 @Service
 public class MinioService {
@@ -51,6 +53,25 @@ public class MinioService {
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    public String getObjectType(String fileName)
+            throws IOException, InvalidKeyException, InvalidResponseException,
+            InsufficientDataException, NoSuchAlgorithmException, ServerException,
+            InternalException, XmlParserException, ErrorResponseException {
+        MinioClient minioClient = getClient();
+        try {
+            StatObjectResponse statObjectResponse = minioClient.statObject(
+                    io.minio.StatObjectArgs.builder()
+                            .bucket(getBucket())
+                            .object(fileName)
+                            .build());
+
+            return statObjectResponse.contentType();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
