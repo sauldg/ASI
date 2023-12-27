@@ -30,8 +30,7 @@ const PartDetails = () => {
             <h4>{"No funciona"}</h4>
         );
     }
-    
-                //FIXME: No se muestra la imagen
+
     return(
         <div>
             <BackLink/>
@@ -41,13 +40,8 @@ const PartDetails = () => {
                     <h5 className="card-title">{part.name}</h5>
                 </div>
 
+                <center><img src={`http://localhost:8080/parts/${id}/image`} alt="" width="30%" height="auto" /></center>
 
-                <img src={`data:image/png;base64,${part.photo.content}`} alt="Imagen" />
-
-                <h6 id="id">
-                    <FormattedMessage id='project.global.fields.id'/>
-                    {": " + part.id}
-                </h6>
                 <h6 id="reference">
                     <FormattedMessage id='project.global.fields.reference'/>
                     {": " + part.reference}
