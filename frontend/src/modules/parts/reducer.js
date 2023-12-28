@@ -12,6 +12,8 @@ const parts = (state = initialState.parts, action) => {
             return action.parts;
         case actionTypes.CLEAR_PARTS:
             return initialState.parts;
+        case actionTypes.MODIFY_AMOUNT_COMPLETED:
+            return action.parts
         default:
             return state;
     }

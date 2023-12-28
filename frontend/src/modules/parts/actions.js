@@ -29,3 +29,11 @@ export const getPartById = (id) => dispatch => {
 export const clearPart = () => ({
     type: actionTypes.CLEAR_PART
 })
+
+const modifyAmountCompleted = (parts) => ({
+    type: actionTypes.MODIFY_AMOUNT_COMPLETED,
+    parts
+});
+export const modifyAmount = (id, amount) => dispatch =>{
+    backend.partService.modifyAmount(id, amount, parts => dispatch(modifyAmountCompleted(parts)))
+}

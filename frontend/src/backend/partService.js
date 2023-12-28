@@ -16,7 +16,6 @@ export const updatePart = (part, onSuccess, onErrors) =>
     appFetch(`/parts`, config('PUT', part), onSuccess, onErrors);
 
 export const modifyAmount = (id, amount, onSuccess, onErrors) =>
-    appFetch(`/parts/modifyAmount/${id}`, config('PATCH', amount), onSuccess, onErrors);
-
+    appFetch(`/parts/modifyAmount/${id}?amount=${amount}`, config('PATCH'), onSuccess, onErrors);
 export const deletePart = (id, onSuccess, onErrors) =>
     appFetch(`/parts/${id}`, config('DELETE'), onSuccess, onErrors);
