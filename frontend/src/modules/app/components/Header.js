@@ -1,12 +1,19 @@
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
 
-import users from '../../users';
+import * as actions from '../actions';
+import { useEffect } from 'react';
+import * as selectors from '../selectors';
 
 const Header = () => {
 
-    const userName = useSelector(users.selectors.getUserName);
+    const dispatch = useDispatch();
+    const profile = useSelector(selectors.getProfile);
+
+    useEffect(() =>{
+        console.log('test ' + profile);
+    }, [profile]);
 
     return (
 
@@ -37,6 +44,15 @@ const Header = () => {
                         <Link className="nav-link" to="/parts/all">
                             <FormattedMessage id="project.app.Header.parts"/>
                         </Link>
+                    </li>
+                </ul>
+
+                <ul className='navbar-nav'>
+                    <li className="nav-item">
+                        <select className="rounded" id="profile" onChange={(e) => {dispatch(actions.updateProfile(e.target.value))}}>
+                            <option value={"admin"} defaultChecked={true}><FormattedMessage id="project.app.Header.profile.admin"/></option>
+                            <option value={"workshop"} defaultChecked={true}><FormattedMessage id="project.app.Header.profile.workshop"/></option>
+                        </select>
                     </li>
                 </ul>
                 

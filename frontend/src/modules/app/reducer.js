@@ -5,6 +5,7 @@ import * as actionTypes from './actionTypes';
 const initialState = {
     error: null,
     loading: false,
+    profile: "admin"
 };
 
 const error = (state = initialState.error, action) => {
@@ -41,9 +42,27 @@ const loading = (state = initialState.loading, action) => {
 
 }
 
+const profile = (state = initialState.profile, action) => {
+
+    switch (action.type) {
+
+        case actionTypes.CURRENT_PROFILE:
+            return action.profile;
+
+        case actionTypes.RESET_PROFILE:
+            return initialState.profile;
+
+        default:
+            return state;
+
+    }
+
+}
+
 const reducer = combineReducers({
     error,
-    loading
+    loading,
+    profile
 });
 
 export default reducer;

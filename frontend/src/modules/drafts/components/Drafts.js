@@ -44,7 +44,6 @@ const Drafts = ({drafts}) => (
         </tbody>
 
     </table>
-
 );
 
 Drafts.propTypes = {

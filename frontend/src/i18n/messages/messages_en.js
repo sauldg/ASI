@@ -7,6 +7,17 @@ export default {
     'project.app.Home.welcome': 'MiniPortal main page content!',
     'project.app.Header.drafts': 'Drafts',
     'project.app.Header.parts': 'Parts',
+    'project.app.Header.profile.admin': 'Administrator',
+    'project.app.Header.profile.workshop': 'Workshop',
+
+    'project.drafts.shippingDetails': 'Shipping Details',
+    'project.drafts.invoicingDetails': 'Invoicing Details',
+    'project.drafts.providers': 'Providers',
+    'project.drafts.selectPart': 'Select Part',
+    'project.drafts.amount': 'Amount',
+    'project.drafts.add': 'Add Part',
+    'project.drafts.DraftForm.cancel': 'Cancel',
+    'project.drafts.DraftForm.save': 'Save',
 
     'project.common.ErrorDialog.title': 'Error',
 

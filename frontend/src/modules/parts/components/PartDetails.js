@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {FormattedDate, FormattedMessage, FormattedTime} from 'react-intl';
-import {useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 
 import * as selectors from '../selectors';
 import * as actions from '../actions';
@@ -10,6 +10,7 @@ import {BackLink} from '../../common';
 const PartDetails = () => {
     const part = useSelector(selectors.getPart);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const {id} = useParams();
 
     useEffect(() => {
@@ -19,9 +20,6 @@ const PartDetails = () => {
         if (!Number.isNaN(partId)) {
             dispatch(actions.getPartById(partId));
         }
-
-        return () => dispatch(actions.clearPart());
-
 
     }, [id, dispatch]);
 
@@ -70,6 +68,8 @@ const PartDetails = () => {
                     <FormattedMessage id='project.global.fields.providers'/>
                     {": " + part.provider}
                 </h6>
+            
+                <button className='roundedButtonCentered' onClick={() => {navigate("/drafts/form")}}><FormattedMessage id="project.parts.createDraft"/></button>
             </div>
 
         </div>

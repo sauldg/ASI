@@ -9,10 +9,11 @@ import {ListAllDrafts, ListAllDraftsResult} from '../../drafts';
 import {PartDetails, ListAllParts, ListAllPartsResult} from '../../parts';
 import {DraftDetails} from '../../drafts';
 import DraftForm from '../../drafts/components/DraftForm';
+import * as selectors from '../selectors';
 
 const Body = () => {
 
-    const loggedIn = useSelector(users.selectors.isLoggedIn);
+    const profile = useSelector(selectors.getProfile);
     
    return (
 
@@ -28,11 +29,6 @@ const Body = () => {
                 <Route path="/parts/all" element={<ListAllParts/>}/>
                 <Route path="/parts/all/all-results" element={<ListAllPartsResult/>}/>
                 <Route path="/parts/:id" element={<PartDetails/>}/>
-                {loggedIn && <Route path="/users/update-profile" element={<UpdateProfile/>}/>}
-                {loggedIn && <Route path="/users/change-password" element={<ChangePassword/>}/>}
-                {loggedIn && <Route path="/users/logout" element={<Logout/>}/>}
-                {!loggedIn && <Route path="/users/login" element={<Login/>}/>}
-                {!loggedIn && <Route path="/users/signup" element={<SignUp/>}/>}
             </Routes>
         </div>
 

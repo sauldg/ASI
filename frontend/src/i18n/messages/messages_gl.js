@@ -7,6 +7,8 @@ export default {
     'project.app.Home.welcome': '¡Contido da páxina principal de ASI Project!',
     'project.app.Header.drafts': 'Borradores',
     'project.app.Header.parts': 'Pezas',
+    'project.app.Header.profile.admin': 'Administrador',
+    'project.app.Header.profile.workshop': 'Taller',
     
     'project.common.ErrorDialog.title': 'Erro',
 
@@ -54,6 +56,16 @@ export default {
     'project.users.UpdateProfile.title': 'Actualizar perfil',
 
     'project.drafts.ListDrafts.noDraftsFound': 'Non se atoparon borradores',
+    'project.drafts.shippingDetails': 'Detalles do envío',
+    'project.drafts.invoicingDetails': 'Detalles da facturación',
+    'project.drafts.providers': 'Proveedores',
+    'project.drafts.selectPart': 'Seleccionar peza',
+    'project.drafts.amount': 'Cantidade',
+    'project.drafts.add': 'Engadir peza',
+    'project.drafts.DraftForm.cancel': 'Cancelar',
+    'project.drafts.DraftForm.save': 'Gardar',
+
+    'project.parts.createDraft': 'Crear borrador',
     'project.parts.ListParts.noPartsFound': 'Non se atoparon pezas',
 
 }

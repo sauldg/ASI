@@ -1,7 +1,7 @@
 import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 import {Link, useNavigate} from 'react-router-dom';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import * as actions from '../actions';
 
@@ -45,6 +45,8 @@ const Parts = ({parts}) => {
             dispatch(actions.modifyAmount(parts[index].id, -parseInt(inputValue), () => {dispatch(actions.listAllParts())}, (errors) => {console.log(errors);}));
         }
     };
+
+    useEffect(() => {return () => dispatch(actions.clearPart())}, []);
 
     return (
         <table className="table table-striped table-hover">

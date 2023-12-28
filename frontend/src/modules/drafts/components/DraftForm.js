@@ -1,13 +1,20 @@
-// DraftForm.js
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createDraft } from './../actions';
+import * as appSelectors from '../../app/selectors';
 import * as draftSelectors from '../../drafts/selectors';
+import * as partSelectors from '../../parts/selectors';
 import * as actions from '../../parts/actions';
+import { FormattedMessage } from 'react-intl';
+import { BackLink } from '../../common';
+import {useNavigate} from 'react-router-dom';
 
 const DraftForm = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const parts = useSelector(draftSelectors.getParts);
+    const part = useSelector(partSelectors.getPart);
+    const profile = useSelector(appSelectors.getProfile);
 
     useEffect(() => {
         // Dispatch the listAllParts action when the component mounts
@@ -18,9 +25,9 @@ const DraftForm = () => {
     const [formState, setFormState] = useState({
         shippingDetails: '',
         invoicingDetails: '',
-        providers: '',
-        selectedPart: null,
-        amount: '',
+        providers: (part !== null ? part.provider : ''),
+        selectedPart: (part !== null ? part : ''),
+        amount: (part !== null ? part.amount : 1),
         stocks: [], // Initialize stocks array
     });
 
@@ -41,9 +48,10 @@ const DraftForm = () => {
         }));
     };
 
-    const handleAddStock = () => {
+    const handleAddStock = (e) => {
+        e.preventDefault();
         const { selectedPart, amount } = formState;
-        if (selectedPart && amount !== '') {
+        if (selectedPart && amount > 0) {
             const newStock = {
                 part: selectedPart,
                 amount: parseInt(amount, 10),
@@ -51,8 +59,8 @@ const DraftForm = () => {
             setFormState((prevFormState) => ({
                 ...prevFormState,
                 stocks: [...prevFormState.stocks, newStock],
-                selectedPart: null,
-                amount: '',
+                selectedPart: (part !== null ? part : formState.selectedPart),
+                amount: (part !== null ? part.amount : formState.amount),
             }));
         }
     };
@@ -72,57 +80,65 @@ const DraftForm = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>
-                Shipping Details:
-                <input
-                    type="text"
-                    name="shippingDetails"
-                    value={formState.shippingDetails}
-                    onChange={handleChange}
-                />
-            </label>
+            {profile === "admin" &&
+                <div>
+                    <label>
+                        <FormattedMessage id="project.drafts.shippingDetails"/>: &nbsp;
+                        <input
+                            type="text"
+                            name="shippingDetails"
+                            value={formState.shippingDetails}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <br />
+                    <label>
+                        <FormattedMessage id="project.drafts.invoicingDetails"/>: &nbsp;
+                        <input
+                            type="text"
+                            name="invoicingDetails"
+                            value={formState.invoicingDetails}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <br />
+                    <label>
+                        <FormattedMessage id="project.drafts.providers"/>: &nbsp;
+                        <input
+                            type="text"
+                            name="providers"
+                            value={((formState.providers.length == 0 && part !== null) ? part.provider : formState.providers) }
+                            onChange={handleChange}
+                        />
+                    </label>
+                </div>
+            }
             <br />
             <label>
-                Invoicing Details:
-                <input
-                    type="text"
-                    name="invoicingDetails"
-                    value={formState.invoicingDetails}
-                    onChange={handleChange}
-                />
-            </label>
-            <br />
-            <label>
-                Providers: 
-                <input
-                    type="text"
-                    name="providers"
-                    value={formState.providers}
-                    onChange={handleChange}
-                />
-            </label>
-            <br />
-            <label>
-                Select Part: 
-                <select name="selectedPart" onChange={handlePartChange} value={formState.selectedPart?.id || ''}>
+                <FormattedMessage id="project.drafts.selectPart"/>: &nbsp;
+                <select name="selectedPart" 
+                    onChange={handlePartChange}
+                    value={(formState.selectedPart === null && part !== null) ? part.id : formState.selectedPart?.id}
+                    >
                     {parts.map((part) => (
                         <option key={part.id} value={part.id}>
                             {part.name}
                         </option>
                     ))}
                 </select>
-            </label>
+            </label> &nbsp; &nbsp;
             <label>
-                Amount:
+            <FormattedMessage id="project.drafts.amount"/>: &nbsp;
                 <input
                     className='numberInput'
-                    type="text"
+                    type="number"
                     name="amount"
-                    value={formState.amount}
+                    min={1}
+                    value={((formState.amount === 1 && part !== null) ? part.amount : formState.amount) }
                     onChange={handleChange}
                 />
             </label> 
-            <button className="roundedButton" type="button" onClick={handleAddStock}>Add</button>
+            <button className="rounded" type="button" onClick={handleAddStock}><FormattedMessage id="project.drafts.add"/></button>
             <ul>
                 {formState.stocks.map((stock, index) => (
                     <li key={index}>
@@ -130,7 +146,8 @@ const DraftForm = () => {
                     </li>
                 ))}
             </ul>
-            <button className="rounded" type="submit">Create Draft</button>
+            <button className="roundedButton" onClick={(e) => {e.preventDefault();navigate(-1)}}><FormattedMessage id="project.drafts.DraftForm.cancel"/></button>
+            <button className="roundedButton" type="submit" onSubmit={handleSubmit}><FormattedMessage id="project.drafts.DraftForm.save"/></button>
         </form>
     );
 };
