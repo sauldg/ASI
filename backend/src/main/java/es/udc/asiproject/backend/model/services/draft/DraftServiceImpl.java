@@ -4,7 +4,9 @@ import es.udc.asiproject.backend.model.entities.draft.Draft;
 import es.udc.asiproject.backend.model.entities.draft.DraftDao;
 import es.udc.asiproject.backend.model.entities.draft.DraftState;
 import es.udc.asiproject.backend.model.entities.part.Part;
+import es.udc.asiproject.backend.model.entities.part.PartDao;
 import es.udc.asiproject.backend.model.entities.stock.Stock;
+import es.udc.asiproject.backend.model.entities.stock.StockDao;
 import es.udc.asiproject.backend.model.util.Block;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -27,7 +29,10 @@ public class DraftServiceImpl implements DraftService {
     private DraftDao draftDao;
 
     @Autowired
-    private DraftDao stockDao;
+    private StockDao stockDao;
+
+    @Autowired
+    private PartDao partDao;
 
     @Override
     public Block<Draft> list(int page, int size) {
@@ -50,7 +55,14 @@ public class DraftServiceImpl implements DraftService {
     @Override
     public Draft create(Draft draft) {
         draft.setState(DraftState.IN_PROCESS);
-        return draftDao.save(draft);
+        Draft saved = draftDao.save(draft);
+        var stocks = draft.getStock();
+        stocks.forEach(stock -> {
+            stock.setPart(partDao.findById(stock.getPart().getId()).get());
+            stock.setDraft(saved);
+            stockDao.save(stock);
+        });
+        return saved;
     }
 
     @Override

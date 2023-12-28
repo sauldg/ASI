@@ -57,8 +57,8 @@ public class DraftController {
 
     @PostMapping("")
     @Transactional
-    public ResponseEntity<DraftDTO> createDraft(@RequestBody Draft draft) {
-        Draft createdDraft = draftService.create(draft);
+    public ResponseEntity<DraftDTO> createDraft(@RequestBody DraftDTO draft) {
+        Draft createdDraft = draftService.create(draft.toEntity());
         return ResponseEntity.status(HttpStatus.CREATED).body(DraftConverter.convertToDto(createdDraft));
     }
 

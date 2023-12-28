@@ -35,9 +35,6 @@ public class Draft {
     @Enumerated(EnumType.STRING)
     DraftState state;
 
-    @OneToMany(mappedBy = "draft", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Stock> stocks = new ArrayList<>();
-
     @Transient
     public void modify(Draft draft) {
         // FIXME: Completar esto segun os haga falta

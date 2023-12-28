@@ -2,10 +2,14 @@ package es.udc.asiproject.backend.rest.dtos;
 
 import es.udc.asiproject.backend.model.entities.draft.Draft;
 import es.udc.asiproject.backend.model.entities.draft.DraftState;
+import es.udc.asiproject.backend.model.entities.part.Part;
+import es.udc.asiproject.backend.model.entities.stock.Stock;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -38,12 +42,24 @@ public class DraftDTO {
     }
 
     public Draft toEntity() {
-        // FIXME: Completar esto
         Draft draft = new Draft();
         draft.setId(id);
         draft.setShippingDetails(shippingDetails);
         draft.setInvoicingDetails(invoicingDetails);
         draft.setProviders(providers);
+        if (state != null) {
+            draft.setState(DraftState.valueOf(state));
+        }
+        Set<Stock> stockSet = new HashSet<>();
+        for (var stockDto: stocks) {
+            var newStock = new Stock();
+            var part = new Part();
+            part.setId(stockDto.getPart().getId());
+            newStock.setPart(part);
+            newStock.setAmount(stockDto.getAmount());
+            stockSet.add(newStock);
+        }
+        draft.setStock(stockSet);
         return draft;
     }
 
