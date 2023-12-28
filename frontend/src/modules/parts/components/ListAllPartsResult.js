@@ -10,6 +10,8 @@ const ListAllPartsResult = () => {
 
     if (!parts) {
         return <h4>{"No funciona"}</h4>;
+    }else{
+        console.log(parts);
     }
 
     const filteredParts = parts.filter(

@@ -40,7 +40,7 @@ const Header = () => {
                     </li>
                 </ul>
                 
-                {userName ? 
+                {/*userName ? 
 
                 <ul className="navbar-nav">
                 
@@ -78,7 +78,7 @@ const Header = () => {
                     </li>
                 </ul>
                 
-                }
+                */}
 
             </div>
         </nav>

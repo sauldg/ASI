@@ -5,3 +5,27 @@
 .form-group > label > span {
     font-weight: bold;
 }
+
+.numberInput {
+    width: 100px;
+}
+
+.roundedButton {
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.roundedButton:hover {
+    animation-name: breath;
+    animation-duration: 0.1s;
+}
+
+@keyframes breath {
+  0%   {transform:scaleX(100%)}
+  25%  {transform:scaleX(95%)}
+  50%  {transform:scaleX(90%)}
+  75%  {transform:scaleX(95%)}
+  100% {transform:scaleX(100%)}
+}

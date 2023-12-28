@@ -95,10 +95,10 @@ public class PartController {
 
     @PatchMapping("/modifyAmount/{id}")
     @Transactional
-    public ResponseEntity<Void> modifyAmount(@PathVariable Long id, @RequestParam Long amount) {
+    public ResponseEntity<List<PartDTO>> modifyAmount(@PathVariable Long id, @RequestParam Long amount) {
         try {
             partService.modifyAmount(id, amount);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok(partService.listAll().stream().map(PartDTO::new).collect(Collectors.toList()));
         } catch (InstanceNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
