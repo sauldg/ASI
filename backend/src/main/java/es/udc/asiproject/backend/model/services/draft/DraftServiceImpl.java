@@ -55,13 +55,15 @@ public class DraftServiceImpl implements DraftService {
     @Override
     public Draft create(Draft draft) {
         draft.setState(DraftState.IN_PROCESS);
-        Draft saved = draftDao.save(draft);
         var stocks = draft.getStock();
+        draft.setStock(null);
+        Draft saved = draftDao.save(draft);
         stocks.forEach(stock -> {
             stock.setPart(partDao.findById(stock.getPart().getId()).get());
             stock.setDraft(saved);
-            stockDao.save(stock);
         });
+        saved.setStock(stocks);
+        draftDao.save(saved);
         return saved;
     }
 

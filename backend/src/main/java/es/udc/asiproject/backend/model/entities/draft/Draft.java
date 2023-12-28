@@ -21,7 +21,7 @@ public class Draft {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     Long id;
 
-    @OneToMany(mappedBy = "part")
+    @OneToMany(mappedBy = "part", cascade = CascadeType.ALL)
     Set<Stock> stock;
 
     @Column(name = "shipping_details")

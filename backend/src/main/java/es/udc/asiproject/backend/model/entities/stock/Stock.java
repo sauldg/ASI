@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Entity
 public class Stock {
     @EmbeddedId
-    StockKey id;
+    StockKey id = new StockKey();
 
     @ManyToOne
     @MapsId("partId")
