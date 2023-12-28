@@ -2,15 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createDraft } from './../actions';
-import { listAllParts } from '../../parts/actions';
+import * as draftSelectors from '../../drafts/selectors';
+import * as actions from '../../parts/actions';
 
 const DraftForm = () => {
     const dispatch = useDispatch();
-    const parts = useSelector(state => state.parts);
+    const parts = useSelector(draftSelectors.getParts);
 
     useEffect(() => {
         // Dispatch the listAllParts action when the component mounts
-        dispatch(listAllParts());
+        dispatch(actions.listAllParts());
     }, [dispatch]);
 
 
@@ -92,7 +93,7 @@ const DraftForm = () => {
             </label>
             <br />
             <label>
-                Providers:
+                Providers: 
                 <input
                     type="text"
                     name="providers"
@@ -102,9 +103,8 @@ const DraftForm = () => {
             </label>
             <br />
             <label>
-                Select Part:
+                Select Part: 
                 <select name="selectedPart" onChange={handlePartChange} value={formState.selectedPart?.id || ''}>
-                    <option value="">Select a part</option>
                     {parts.map((part) => (
                         <option key={part.id} value={part.id}>
                             {part.name}
@@ -115,13 +115,14 @@ const DraftForm = () => {
             <label>
                 Amount:
                 <input
+                    className='numberInput'
                     type="text"
                     name="amount"
                     value={formState.amount}
                     onChange={handleChange}
                 />
-            </label>
-            <button type="button" onClick={handleAddStock}>Add</button>
+            </label> 
+            <button className="roundedButton" type="button" onClick={handleAddStock}>Add</button>
             <ul>
                 {formState.stocks.map((stock, index) => (
                     <li key={index}>
@@ -129,7 +130,7 @@ const DraftForm = () => {
                     </li>
                 ))}
             </ul>
-            <button type="submit">Create Draft</button>
+            <button className="rounded" type="submit">Create Draft</button>
         </form>
     );
 };

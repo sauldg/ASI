@@ -11,6 +11,11 @@
     border-radius: 5px;
 }
 
+.rounded {
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .roundedButton {
     width: 80px;
     height: 30px;
