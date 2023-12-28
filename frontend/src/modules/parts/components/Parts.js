@@ -32,8 +32,7 @@ const Parts = ({parts}) => {
         const isConfirmed = window.confirm(`Piezas actuales: ${partAmount}\nPiezas a añadir: ${inputValue}\nTotal: ${parseInt(inputValue) + parseInt(partAmount)}\n¿Estás seguro?`);
 
         if (isConfirmed) {
-            dispatch(actions.modifyAmount(parts[index].id, parseInt(inputValue)));
-            dispatch(actions.listAllParts())
+            dispatch(actions.modifyAmount(parts[index].id, parseInt(inputValue), () => {dispatch(actions.listAllParts())}, (errors) => {console.log(errors);}));
         }
     };
 
@@ -43,8 +42,7 @@ const Parts = ({parts}) => {
         const isConfirmed = window.confirm(`Piezas actuales: ${partAmount}\nPiezas a reducir: ${inputValue}\nTotal: ${parseInt(partAmount) - parseInt(inputValue)}\n¿Estás seguro?`);
 
         if (isConfirmed) {
-            dispatch(actions.modifyAmount(parts[index].id, -parseInt(inputValue)));
-            dispatch(actions.listAllParts())
+            dispatch(actions.modifyAmount(parts[index].id, -parseInt(inputValue), () => {dispatch(actions.listAllParts())}, (errors) => {console.log(errors);}));
         }
     };
 
@@ -90,11 +88,11 @@ const Parts = ({parts}) => {
                     <td>{part.description}</td>
                     <td>{part.provider}</td>
                     <td>{part.amount}</td>
-                    <td><input type={"number"} min={"0"} value={inputValues[index]}
-                               onChange={(e) => handleInputChange(index, e.target.value)}></input>
-                        <button type="button" disabled={!addButtonEnabled[index]} onClick={() => handleAddClick(index)}>
-                            <FormattedMessage id='project.global.fields.increaseButton'/></button>
-                        <button type="button" disabled={!reduceButtonEnabled[index]} onClick={() => handleReduceClick(index)}>
+                    <td><input className="numberInput" type={"number"} min={"0"} value={inputValues[index]}
+                               onChange={(e) => handleInputChange(index, e.target.value)}></input>&nbsp;
+                        <button className="roundedButton" type="button" disabled={!addButtonEnabled[index]} onClick={() => handleAddClick(index)}>
+                            <FormattedMessage id='project.global.fields.increaseButton'/></button>&nbsp;
+                        <button className="roundedButton" type="button" disabled={!reduceButtonEnabled[index]} onClick={() => handleReduceClick(index)}>
                             <FormattedMessage id='project.global.fields.reduceButton'/></button>
                     </td>
 
