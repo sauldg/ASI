@@ -1,10 +1,22 @@
 import { combineReducers } from 'redux';
 import * as actionTypes from './actionTypes';
+import * as partActionTypes from '../parts/actionTypes';
 
 const initialState = {
-    drafts: null,
-    draft: null
+    drafts: [],
+    parts: [],
+    draft: []
 };
+
+
+const parts = (state = initialState.parts, action) => {
+    switch (action.type) {
+        case partActionTypes.LIST_ALL_PARTS_COMPLETED:
+            return action.parts;
+        default:
+            return state;
+    }
+}
 
 const drafts = (state = initialState.drafts, action) => {
     switch (action.type) {
@@ -21,6 +33,8 @@ const draft = (state = initialState.draft, action) => {
     switch (action.type) {
         case actionTypes.FIND_DRAFT_BY_ID_COMPLETED:
             return action.draft;
+        case actionTypes.DRAFT_COMPLETED:
+            return action.draft;
         case actionTypes.CLEAR_DRAFT:
             return initialState.draft;
         default:
@@ -30,6 +44,7 @@ const draft = (state = initialState.draft, action) => {
 
 const reducer = combineReducers({
     drafts,
+    parts,
     draft,
 });
 

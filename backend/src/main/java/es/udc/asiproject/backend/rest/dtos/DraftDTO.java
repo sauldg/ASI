@@ -4,6 +4,9 @@ import es.udc.asiproject.backend.model.entities.draft.Draft;
 import es.udc.asiproject.backend.model.entities.draft.DraftState;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Setter
 @Getter
 @Builder
@@ -21,6 +24,8 @@ public class DraftDTO {
     String providers;
 
     String state;
+
+    List<StockDTO> stocks = new ArrayList<>();
 
 
     public DraftDTO(Draft draft) {

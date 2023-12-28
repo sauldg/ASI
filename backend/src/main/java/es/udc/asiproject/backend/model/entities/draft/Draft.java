@@ -4,6 +4,7 @@ import es.udc.asiproject.backend.model.entities.stock.Stock;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -17,7 +18,7 @@ import java.util.Set;
 public class Draft {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     Long id;
 
     @OneToMany(mappedBy = "part")
@@ -33,6 +34,9 @@ public class Draft {
 
     @Enumerated(EnumType.STRING)
     DraftState state;
+
+    @OneToMany(mappedBy = "draft", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Stock> stocks = new ArrayList<>();
 
     @Transient
     public void modify(Draft draft) {

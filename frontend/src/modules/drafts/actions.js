@@ -29,3 +29,16 @@ export const getDraftById = (id) => dispatch => {
     backend.draftService.getDraftById(id, 
         draft => dispatch(findDraftByIdCompleted(draft)));
 }
+
+
+export const draftCompleted = (draft) => ({
+    type: actionTypes.DRAFT_COMPLETED,
+    draft
+});
+
+export const createDraft = (draft, onSuccess, onErrors) => dispatch =>
+    backend.draftService.createDraft(draft, result => {
+        dispatch(draftCompleted(result));
+        onSuccess();
+    },
+    onErrors);
