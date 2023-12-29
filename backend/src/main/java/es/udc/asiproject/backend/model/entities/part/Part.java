@@ -24,7 +24,7 @@ public class Part {
 
     String name;
 
-    @OneToMany(mappedBy = "draft")
+    @OneToMany(mappedBy = "part")
     Set<Stock> stock;
 
     Long amount;
