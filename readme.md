@@ -2,33 +2,37 @@
 
 ## Requirements
 
-- Node 16.
-- Java 17 (tested with Eclipse Temurin).
-- Maven 3.8+.
-- MySQL 8.
+- Node 21.4.0
+- Java 17.0.2 (tested with OpenJDK).
+- Maven 3.9+.
+- MySQL 8.2.0
 
-## Database creation
+## Docker compose
 
+Go to the root folder of the project open the terminal in that location and run the following command with Docker desktop 
+running in background:
 ```
-Start Mysql server if not running (e.g. mysqld).
-
-mysqladmin -u root create asi -p
-mysqladmin -u root create asitest -p
-
-mysql -u root -p
-    CREATE USER 'mysqladmin'@'localhost' IDENTIFIED BY 'mysqladmin';
-    GRANT ALL PRIVILEGES ON asi.* to 'mysqladmin'@'localhost' WITH GRANT OPTION;
-    GRANT ALL PRIVILEGES ON asitest.* to 'mysqladmin'@'localhost' WITH GRANT OPTION;
-    exit
+docker compose up -d
 ```
+This command will create the containers for the databases and minio.
+
+## Minio configuration
+
+Once the containers are created and docker is running, you can access the minio configuration going to the following url in your browser "http://localhost:9090/". 
+
+In this page, you have to login with the username and password "minioadmin". Inside the portal, you can now create a bucket named "asi" and upload two images, "1.png" and "2.png".
 
 ## Run
 
+Open a terminal in the root folder of the project to run the backend, use the following commands: 
 ```
 cd backend
 mvn sql:execute (only first time to create tables)
 mvn spring-boot:run
+```
 
+Open another terminal in the root folder of the project to run the frontend, use the following commands: 
+```
 cd frontend
 npm install (only first time to download libraries)
 npm start
