@@ -6,9 +6,10 @@ const listAllPartsCompleted = (parts) => ({
     parts
 });
 
-export const listAllParts = () => dispatch => {
+export const listAllParts = (onSuccess) => dispatch => {
     backend.partService.listAllParts(result => {
         dispatch(listAllPartsCompleted(result));
+        onSuccess(result);
     });
 }
 
@@ -21,9 +22,9 @@ const getPartByIdCompleted = (part) => ({
     part
 });
 
-export const getPartById = (id) => dispatch => {
+export const getPartById = (id, onSuccess) => dispatch => {
     backend.partService.getPartById(id, 
-        part => dispatch(getPartByIdCompleted(part)));
+        part => {dispatch(getPartByIdCompleted(part));onSuccess(part);});
 }
 
 export const clearPart = () => ({

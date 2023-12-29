@@ -6,8 +6,8 @@ export const listParts = (page, size, onSuccess) =>
 export const listAllParts = (onSuccess) =>
     appFetch('/parts/all', config('GET'), onSuccess);
 
-export const getPartById = (id, onSuccess) =>
-    appFetch(`/parts/${id}`, config('GET'), onSuccess);
+export const getPartById = (id, onSuccess, onErrors) =>
+    appFetch(`/parts/${id}`, config('GET'), onSuccess, onErrors);
 
 export const createPart = (part, onSuccess, onErrors) =>
     appFetch('/parts', config('POST', part), onSuccess, onErrors);

@@ -13,7 +13,7 @@ const ListAllPartsResult = () => {
     const [allParts, setAllParts] = useState(parts);
 
     useEffect(()=> {
-        dispatch(actions.listAllParts());
+        dispatch(actions.listAllParts((p) => {setAllParts(p);}));
     }, [dispatch]);
 
     if (!allParts) {

@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {FormattedDate, FormattedMessage, FormattedTime} from 'react-intl';
 import {useNavigate, useParams} from 'react-router-dom';
@@ -9,24 +9,21 @@ import {BackLink} from '../../common';
 
 const PartDetails = () => {
     const part = useSelector(selectors.getPart);
+    const [currentPart, setCurrentPart] = useState(part);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {id} = useParams();
 
     useEffect(() => {
-
         const partId = id;
 
         if (!Number.isNaN(partId)) {
-            dispatch(actions.getPartById(partId));
+            dispatch(actions.getPartById(partId, p => {setCurrentPart(p);}));
         }
+    }, [id]);
 
-    }, [id, dispatch]);
-
-    if (!part) {
-        return (
-            <h4>{"No funciona"}</h4>
-        );
+    if (!currentPart) {
+        return <></>;
     }
 
     return(
