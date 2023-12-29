@@ -17,13 +17,19 @@ const DraftForm = () => {
     const part = useSelector(partSelectors.getPart);
     const profile = useSelector(appSelectors.getProfile);
 
+    useEffect(()=>{
+        if(parts.length == 0) {
+            dispatch(actions.listAllParts());
+        }
+    }, [parts]);
+
     const [formState, setFormState] = useState({
         shippingDetails: '',
         invoicingDetails: '',
         providers: (part !== null ? part.provider : ''),
         selectedPart: (part !== null ? part : null),
         amount: (part !== null ? part.amount : 1),
-        stocks: [], // Initialize stocks array
+        stocks: [], 
     });
 
     const handleChange = (e) => {

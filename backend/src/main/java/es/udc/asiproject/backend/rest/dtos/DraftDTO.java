@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Setter
 @Getter
@@ -33,12 +34,17 @@ public class DraftDTO {
 
 
     public DraftDTO(Draft draft) {
-        // FIXME: Completar esto
         id = draft.getId();
         shippingDetails = draft.getShippingDetails();
         invoicingDetails = draft.getInvoicingDetails();
         providers = draft.getProviders();
         state = draft.getState().toString();
+        draft.getStock().forEach(stock -> {
+            stocks.add(StockDTO.builder()
+                    .part(PartConverter.convertToDto(stock.getPart()))
+                    .amount(stock.getAmount())
+                    .build());
+        });
     }
 
     public Draft toEntity() {
