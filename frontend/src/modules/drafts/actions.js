@@ -6,9 +6,12 @@ const listAllDraftsCompleted = (drafts) => ({
     drafts
 });
 
-export const listAllDrafts = () => dispatch => {
+export const listAllDrafts = (onSuccess) => dispatch => {
     backend.draftService.listAllDrafts(result => {
-        dispatch(listAllDraftsCompleted(result));
+        if(result.length > 0) {
+            dispatch(listAllDraftsCompleted(result));
+            onSuccess(result);
+        }
     });
 }
 

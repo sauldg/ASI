@@ -5,6 +5,7 @@ import * as appSelectors from '../../app/selectors';
 import * as draftSelectors from '../../drafts/selectors';
 import * as partSelectors from '../../parts/selectors';
 import * as actions from '../../parts/actions';
+import * as draftActions from '../actions';
 import { FormattedMessage } from 'react-intl';
 import { BackLink } from '../../common';
 import {useNavigate} from 'react-router-dom';
@@ -16,17 +17,11 @@ const DraftForm = () => {
     const part = useSelector(partSelectors.getPart);
     const profile = useSelector(appSelectors.getProfile);
 
-    useEffect(() => {
-        // Dispatch the listAllParts action when the component mounts
-        dispatch(actions.listAllParts());
-    }, [dispatch]);
-
-
     const [formState, setFormState] = useState({
         shippingDetails: '',
         invoicingDetails: '',
         providers: (part !== null ? part.provider : ''),
-        selectedPart: (part !== null ? part : ''),
+        selectedPart: (part !== null ? part : null),
         amount: (part !== null ? part.amount : 1),
         stocks: [], // Initialize stocks array
     });
@@ -50,11 +45,14 @@ const DraftForm = () => {
 
     const handleAddStock = (e) => {
         e.preventDefault();
-        const { selectedPart, amount } = formState;
-        if (selectedPart && amount > 0) {
+        if(formState.selectedPart === null && parts.length > 0)  {
+            formState.selectedPart = parts[0];
+            
+        }
+        if (formState.selectedPart && formState.amount > 0) {
             const newStock = {
-                part: selectedPart,
-                amount: parseInt(amount, 10),
+                part: formState.selectedPart,
+                amount: parseInt(formState.amount, 10),
             };
             setFormState((prevFormState) => ({
                 ...prevFormState,
@@ -67,10 +65,21 @@ const DraftForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const draft = {
+            "id": null,
+            "shippingDetails": formState.shippingDetails,
+            "invoicingDetails": formState.invoicingDetails,
+            "providers": formState.providers,
+            "state": null,
+            "amount": formState.amount,
+            "stocks": formState.stocks
+        };
         dispatch(
-            createDraft(formState, () => {
+            createDraft(draft, () => {
                 // Handle success, e.g., redirect to another page
                 console.log('Draft created successfully');
+                dispatch(draftActions.clearMyDrafts());
+                navigate("/drafts/all");
             }, (errors) => {
                 // Handle errors, e.g., display error messages
                 console.error('Error creating draft:', errors);
@@ -118,7 +127,8 @@ const DraftForm = () => {
                 <FormattedMessage id="project.drafts.selectPart"/>: &nbsp;
                 <select name="selectedPart" 
                     onChange={handlePartChange}
-                    value={(formState.selectedPart === null && part !== null) ? part.id : formState.selectedPart?.id}
+                    value={(formState.selectedPart === null && part !== null) ? part.id : formState.selectedPart?.id || ''}
+                    required
                     >
                     {parts.map((part) => (
                         <option key={part.id} value={part.id}>
@@ -136,6 +146,7 @@ const DraftForm = () => {
                     min={1}
                     value={((formState.amount === 1 && part !== null) ? part.amount : formState.amount) }
                     onChange={handleChange}
+                    required
                 />
             </label> 
             <button className="rounded" type="button" onClick={handleAddStock}><FormattedMessage id="project.drafts.add"/></button>

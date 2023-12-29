@@ -59,7 +59,7 @@ export default {
     'project.drafts.invoicingDetails': 'Detalles de facturación',
     'project.drafts.providers': 'Proveedores',
     'project.drafts.selectPart': 'Seleccionar pieza',
-    'project.drafts.amount': 'Importe',
+    'project.drafts.amount': 'Cantidad',
     'project.drafts.add': 'Añadir pieza',
     'project.drafts.DraftForm.cancel': 'Cancelar',
     'project.drafts.DraftForm.save': 'Guardar',

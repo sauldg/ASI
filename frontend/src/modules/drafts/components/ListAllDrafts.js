@@ -1,23 +1,51 @@
-import {useDispatch} from 'react-redux';
+import {FormattedMessage} from 'react-intl';
+import {useSelector} from 'react-redux';
+import {useEffect, useState} from "react";
+import * as selectors from '../selectors';
+import Drafts from './Drafts';
+import { useNavigate } from 'react-router-dom';
+import {useDispatch} from "react-redux";
+import * as actions from '../../parts/actions';
+import * as draftActions from '../actions';
 
-import * as actions from '../actions';
-import {useEffect} from "react";
-import {useNavigate} from "react-router-dom";
-
-
-
-const ListAllDrafts = () => {
-
+const ListAllDraftsResult = () => {
     const dispatch = useDispatch();
+    const draft = useSelector(selectors.getDrafts);
+    const [drafts, setDrafts] = useState(draft);
     const navigate = useNavigate();
 
     useEffect(() => {
+        if(draft.length == 0) {
+            dispatch(draftActions.listAllDrafts((drafts) => {setDrafts(drafts)}));
+        }
+        
+        return () => dispatch(actions.clearPart())
+    }, [draft]);
 
-        dispatch(actions.listAllDrafts());
-        navigate('all-results') //??? sustituye a history.push¿
-    });
+    if (!drafts) {
+        return (<h4>{"No funciona"}</h4>);
+    }
 
-    return null;
+    if (drafts.length === 0) {
+        return (
+            <div className="alert alert-danger" role="alert">
+                <FormattedMessage id='project.drafts.ListDrafts.noDraftsFound'/>
+            </div>
+        );
+    }
+
+    return (
+
+        <div>
+            <h4><FormattedMessage id="project.app.Header.drafts"/></h4>
+            <Drafts drafts={drafts}/>
+            <br />
+            <br />
+            <button className='roundedButtonCentered' onClick={() => {navigate("/drafts/form")}}><FormattedMessage id="project.parts.createDraft"/></button>
+        </div>
+
+    );
+
 }
 
-export default ListAllDrafts;
+export default ListAllDraftsResult;

@@ -23,11 +23,9 @@ const Body = () => {
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/drafts/all" element={<ListAllDrafts/>}/>
-                <Route path="/drafts/all/all-results" element={<ListAllDraftsResult/>}/>
                 <Route path="/drafts/:id" element={<DraftDetails/>}/>
                 <Route path="/drafts/form" element={<DraftForm/>}/>
                 <Route path="/parts/all" element={<ListAllParts/>}/>
-                <Route path="/parts/all/all-results" element={<ListAllPartsResult/>}/>
                 <Route path="/parts/:id" element={<PartDetails/>}/>
             </Routes>
         </div>

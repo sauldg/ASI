@@ -90,11 +90,11 @@ const Parts = ({parts}) => {
                     <td>{part.description}</td>
                     <td>{part.provider}</td>
                     <td>{part.amount}</td>
-                    <td><input className="numberInput" type={"number"} min={"0"} value={inputValues[index]}
+                    <td><input className="numberInput" name='amount' type={"number"} min={"0"} value={inputValues[index]}
                                onChange={(e) => handleInputChange(index, e.target.value)}></input>&nbsp;
-                        <button className="roundedButton" type="button" disabled={!addButtonEnabled[index]} onClick={() => handleAddClick(index)}>
+                        <button className="roundedButton" name='increase' type="button" disabled={!addButtonEnabled[index]} onClick={() => handleAddClick(index)}>
                             <FormattedMessage id='project.global.fields.increaseButton'/></button>&nbsp;
-                        <button className="roundedButton" type="button" disabled={!reduceButtonEnabled[index]} onClick={() => handleReduceClick(index)}>
+                        <button className="roundedButton" name='decrease' type="button" disabled={!reduceButtonEnabled[index]} onClick={() => handleReduceClick(index)}>
                             <FormattedMessage id='project.global.fields.reduceButton'/></button>
                     </td>
 

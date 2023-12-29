@@ -12,7 +12,7 @@ const Header = () => {
     const profile = useSelector(selectors.getProfile);
 
     useEffect(() =>{
-        console.log('test ' + profile);
+        
     }, [profile]);
 
     return (

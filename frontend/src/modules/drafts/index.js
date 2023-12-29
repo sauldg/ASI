@@ -4,7 +4,6 @@ import reducer from './reducer';
 import * as selectors from './selectors';
 
 export {default as ListAllDrafts} from './components/ListAllDrafts';
-export {default as ListAllDraftsResult} from './components/ListAllDraftsResult';
 export {default as DraftDetails} from './components/DraftDetails';
 export {default as DraftForm} from './components/DraftForm';
 
